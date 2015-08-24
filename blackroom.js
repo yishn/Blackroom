@@ -82,6 +82,7 @@ function closeBox(callback) {
 $(window).on('load', function() {
     $('#overlay').addClass('show').on('click', function() { closeBox(app.quit) })
     $('#box .inner').on('click', function() { setShowCaption(!getShowCaption()) })
+    if (settings.showcaption) $('#box .caption').addClass('show')
 
     loadImage(process.argv[1])
 })
