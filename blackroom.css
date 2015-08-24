@@ -83,6 +83,7 @@ img {
         padding: 10px 20px;
         background: rgba(0, 0, 0, .8);
         font-weight: lighter;
+        line-height: 30px;
         transition: .2s bottom;
     }
     #box .inner.show .caption.show {
@@ -92,11 +93,10 @@ img {
         display: inline;
         font-size: 22px;
         font-weight: lighter;
-        line-height: 30px;
     }
     #box .inner .caption p {
         display: inline;
-        margin-left: 5px;
+        margin-left: 10px;
         color: #ccc;
 }
 
