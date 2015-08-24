@@ -2,6 +2,8 @@
 
 A lightbox image viewer for the desktop. This is a work in progress.
 
+![Screenshot](screenshot.png)
+
 ## Third Party Libraries
 
 * [Electron](http://electron.atom.io/)
