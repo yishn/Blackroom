@@ -25,6 +25,8 @@ function loadImage(path) {
             resizedSize = [Math.round(width), Math.round(maxSize[1])]
         }
 
+        var scale = resizedSize[0] / size[0]
+
         // Animate box and show image
 
         $('#box').addClass('show')
@@ -33,7 +35,9 @@ function loadImage(path) {
             .css('height', resizedSize[1])
 
         setTimeout(function() {
-            $('#box .inner img').attr('src', path).addClass('show')
+            $('#box .inner img').attr('src', path)
+                .css('transform', 'translate(-50%, -50%) scale(' + scale + ')')
+                .addClass('show')
         }, 500)
     })
 }
@@ -50,12 +54,11 @@ function closeBox(callback) {
 
         setTimeout(callback, 1000)
     }, 500)
-
 }
 
 $(window).on('load', function() {
     $('#overlay').addClass('show').on('click', function() {
-        closeBox(remote.getCurrentWindow().close)
+        closeBox(app.quit)
     })
 
     loadImage(process.argv[1])
