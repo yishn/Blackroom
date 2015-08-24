@@ -36,18 +36,24 @@ function loadImage(path) {
     })
 }
 
-function closeBox() {
-    $('#overlay').removeClass('show')
-    $('#box').removeClass('show')
-        .children('.inner')
-        .css('width', 50)
-        .css('height', 50)
+function closeBox(callback) {
+    $('#box .inner img').removeClass('show')
+
+    setTimeout(function() {
+        $('#overlay').removeClass('show')
+        $('#box').removeClass('show')
+            .children('.inner')
+            .css('width', 50)
+            .css('height', 50)
+
+        setTimeout(callback, 1000)
+    }, 500)
+
 }
 
 $(window).on('load', function() {
     $('#overlay').addClass('show').on('click', function() {
-        closeBox()
-        setTimeout(remote.getCurrentWindow().close, 1000)
+        closeBox(remote.getCurrentWindow().close)
     })
 
     loadImage(process.argv[1])
