@@ -28,7 +28,7 @@ function loadImage(url) {
 
     var img = $('#test').attr('src', url)
     var screenSize = [$('#overlay').width(), $('#overlay').height()]
-    var maxSize = [screenSize[0] * 0.9, screenSize[1] * 0.9]
+    var maxSize = [screenSize[0] * 0.8, screenSize[1] * 0.8]
 
     img.on('load', function() {
         var size = [img.width(), img.height()]
