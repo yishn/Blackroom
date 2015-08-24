@@ -1,5 +1,6 @@
 var remote = require('remote')
 var path = require('path')
+var settings = require('./settings.json')
 var app = remote.require('app')
 var process = remote.require('process')
 var dialog = remote.require('dialog')
@@ -27,7 +28,7 @@ function loadImage(url) {
 
     var img = $('#test').attr('src', url)
     var screenSize = [$('#overlay').width(), $('#overlay').height()]
-    var maxSize = [screenSize[0] * 0.8, screenSize[1] * 0.8]
+    var maxSize = [screenSize[0] * settings.maxscale, screenSize[1] * settings.maxscale8]
 
     img.on('load', function() {
         var size = [img.width(), img.height()]
