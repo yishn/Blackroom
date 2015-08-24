@@ -44,11 +44,25 @@ img {
         position: absolute;
         top: 50%;
         left: 50%;
-        max-height: 70%;
-        max-width: 70%;
+        padding: 5px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+        opacity: 0;
         transform: translate(-50%, -50%);
+        transition: .5s opacity;
     }
-    #box img {
-        max-height: 100%;
-        max-width: 100%;
+    #box.show {
+        opacity: 1;
+    }
+    #box .inner {
+        height: 50px;
+        width: 50px;
+        position: relative;
+        transition: .5s height, .5s width;
+}
+
+#test {
+    position: absolute;
+    left: 150%;
+    top: 150%;
 }
