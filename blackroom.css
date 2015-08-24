@@ -4,8 +4,12 @@
 }
 
 body {
-    overflow: hidden;
-    background: rgba(0, 0, 0, .7);
+        overflow: hidden;
+        background: transparent;
+        transition: 1s background;
+    }
+    body.show {
+        background: rgba(0, 0, 0, .7)
 }
 
 body, input, button, select, option {

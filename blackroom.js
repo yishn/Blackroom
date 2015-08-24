@@ -1,8 +1,11 @@
 var remote = require('remote')
 var app = remote.require('app')
 
-window.onload = function() {
-    window.onclick = function() {
-        remote.getCurrentWindow().close()
-    }
-}
+$(window).on('load', function() {
+    $('body').addClass('show')
+
+    $(window).on('click', function() {
+        $('body').removeClass('show')
+        setTimeout(remote.getCurrentWindow().close, 1000)
+    })
+})
