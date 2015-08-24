@@ -25,6 +25,8 @@ function loadImage(path) {
             resizedSize = [Math.round(width), Math.round(maxSize[1])]
         }
 
+        // Animate box and show image
+
         $('#box').addClass('show')
             .children('.inner')
             .css('width', resizedSize[0])
