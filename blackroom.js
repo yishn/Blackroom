@@ -8,10 +8,8 @@ function loadImage(path) {
 }
 
 $(window).on('load', function() {
-    $('body').addClass('show')
-
-    $(window).on('click', function() {
-        $('body').removeClass('show')
+    $('#overlay').addClass('show').on('click', function() {
+        $('#overlay').removeClass('show')
         setTimeout(remote.getCurrentWindow().close, 1000)
     })
 

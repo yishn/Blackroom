@@ -4,12 +4,8 @@
 }
 
 body {
-        overflow: hidden;
-        background: transparent;
-        transition: 1s background;
-    }
-    body.show {
-        background: rgba(0, 0, 0, .7)
+    overflow: hidden;
+    background: transparent;
 }
 
 body, input, button, select, option {
@@ -30,4 +26,29 @@ a, img {
 
 img {
     vertical-align: bottom;
+}
+
+#overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: 1s background;
+    }
+    #overlay.show {
+        background: rgba(0, 0, 0, .7);
+}
+
+#box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        max-height: 70%;
+        max-width: 70%;
+        transform: translate(-50%, -50%);
+    }
+    #box img {
+        max-height: 100%;
+        max-width: 100%;
 }
