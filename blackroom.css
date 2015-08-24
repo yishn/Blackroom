@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    background: rgba(0, 0, 0, .7);
+}
+
+body, input, button, select, option {
+    color: white;
+    font: 14px/1.5 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+}
+
+body, a {
+    cursor: default;
+    outline: 0;
+    -webkit-transform-style: preserve-3d;
+    -webkit-user-select: none;
+}
+
+a, img {
+    -webkit-user-drag: none;
+}
+
+img {
+    vertical-align: bottom;
+}

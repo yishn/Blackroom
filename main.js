@@ -7,9 +7,19 @@ var window = null
 app.on('window-all-closed', function() { app.quit() })
 
 app.on('ready', function() {
+    var size = require('screen').getPrimaryDisplay().bounds
+
     window = new BrowserWindow({
-        'use-content-size': true,
-        'show': false
+        'x': 0,
+        'y': 0,
+        'width': size.width,
+        'height': size.height,
+        'always-on-top': true,
+        'resizable': false,
+        'skip-taskbar': true,
+        'show': false,
+        'frame': false,
+        'transparent': true
     })
 
     // window.toggleDevTools()
