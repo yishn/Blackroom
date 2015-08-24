@@ -4,15 +4,17 @@ var process = remote.require('process')
 var dialog = remote.require('dialog')
 
 function loadImage(path) {
-    // First get image dimensions
+    // First get image size
 
     var img = $('#test').attr('src', path)
     var screenSize = [$('#overlay').width(), $('#overlay').height()]
-    var maxSize = [screenSize[0] * 0.8, screenSize[1] * 0.8]
+    var maxSize = [screenSize[0] * 0.9, screenSize[1] * 0.9]
 
     img.on('load', function() {
         var size = [img.width(), img.height()]
         var resizedSize = size
+
+        // Calculate resized image size
 
         if (size[0] > maxSize[0]) {
             var height = maxSize[0] / size[0] * size[1]
@@ -27,6 +29,10 @@ function loadImage(path) {
             .children('.inner')
             .css('width', resizedSize[0])
             .css('height', resizedSize[1])
+
+        setTimeout(function() {
+            $('#box .inner img').attr('src', path).addClass('show')
+        }, 500)
     })
 }
 

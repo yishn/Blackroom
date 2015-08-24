@@ -59,10 +59,20 @@ img {
         width: 50px;
         position: relative;
         transition: .5s height, .5s width;
+    }
+    #box .inner img {
+        max-height: 100%;
+        max-width: 100%;
+        opacity: 0;
+        transition: .5s opacity;
+    }
+    #box .inner img.show {
+        opacity: 1;
 }
 
 #test {
     position: absolute;
     left: 150%;
     top: 150%;
+    visibility: hidden;
 }
