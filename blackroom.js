@@ -1,12 +1,32 @@
 var remote = require('remote')
+var path = require('path')
 var app = remote.require('app')
 var process = remote.require('process')
 var dialog = remote.require('dialog')
 
-function loadImage(path) {
+function getCaption() {
+    return $('#box h1').text()
+}
+
+function setCaption(text) {
+    $('#box h1').text(text)
+}
+
+function getShowCaption() {
+    return $('#box .caption').hasClass('show')
+}
+
+function setShowCaption(show) {
+    if (show) $('#box .caption').addClass('show')
+    else $('#box .caption').removeClass('show')
+}
+
+function loadImage(url) {
+    setCaption(path.basename(url))
+
     // First get image size
 
-    var img = $('#test').attr('src', path)
+    var img = $('#test').attr('src', url)
     var screenSize = [$('#overlay').width(), $('#overlay').height()]
     var maxSize = [screenSize[0] * 0.9, screenSize[1] * 0.9]
 
@@ -35,7 +55,7 @@ function loadImage(path) {
             .css('height', resizedSize[1])
 
         setTimeout(function() {
-            $('#box .inner img').attr('src', path)
+            $('#box .inner img').attr('src', url)
                 .css('transform', 'translate(-50%, -50%) scale(' + scale + ')')
                 .parent()
                 .addClass('show')
@@ -58,9 +78,8 @@ function closeBox(callback) {
 }
 
 $(window).on('load', function() {
-    $('#overlay').addClass('show').on('click', function() {
-        closeBox(app.quit)
-    })
+    $('#overlay').addClass('show').on('click', function() { closeBox(app.quit) })
+    $('#box .inner').on('click', function() { setShowCaption(!getShowCaption()) })
 
     loadImage(process.argv[1])
 })
