@@ -37,13 +37,14 @@ function loadImage(path) {
         setTimeout(function() {
             $('#box .inner img').attr('src', path)
                 .css('transform', 'translate(-50%, -50%) scale(' + scale + ')')
+                .parent()
                 .addClass('show')
         }, 500)
     })
 }
 
 function closeBox(callback) {
-    $('#box .inner img').removeClass('show')
+    $('#box .inner').removeClass('show')
 
     setTimeout(function() {
         $('#overlay').removeClass('show')
