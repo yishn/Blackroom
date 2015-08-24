@@ -5,11 +5,12 @@ var process = remote.require('process')
 var dialog = remote.require('dialog')
 
 function getCaption() {
-    return $('#box h1').text()
+    return [$('#box h1').text(), $('#box h1 + p').text()]
 }
 
-function setCaption(text) {
+function setCaption(text, details) {
     $('#box h1').text(text)
+    $('#box h1 + p').text(details)
 }
 
 function getShowCaption() {
@@ -22,8 +23,6 @@ function setShowCaption(show) {
 }
 
 function loadImage(url) {
-    setCaption(path.basename(url))
-
     // First get image size
 
     var img = $('#test').attr('src', url)
@@ -33,6 +32,8 @@ function loadImage(url) {
     img.on('load', function() {
         var size = [img.width(), img.height()]
         var resizedSize = size
+
+        setCaption(path.basename(url), size[0] + '×' + size[1])
 
         // Calculate resized image size
 

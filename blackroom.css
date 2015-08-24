@@ -81,7 +81,8 @@ img {
         bottom: -50px;
         height: 30px;
         padding: 10px 20px;
-        background: rgba(0, 0, 0, .6);
+        background: rgba(0, 0, 0, .8);
+        font-weight: lighter;
         transition: .2s bottom;
     }
     #box .inner.show .caption.show {
@@ -89,9 +90,14 @@ img {
     }
     #box .inner .caption h1 {
         display: inline;
-        font-size: 23px;
+        font-size: 22px;
         font-weight: lighter;
         line-height: 30px;
+    }
+    #box .inner .caption p {
+        display: inline;
+        margin-left: 5px;
+        color: #ccc;
 }
 
 #test {
