@@ -26,6 +26,7 @@ app.on('ready', function() {
 
     window.on('closed', function() { window = null })
     window.webContents.on('did-finish-load', function() { window.show() })
+    window.webContents.on('will-navigate', function(e) { e.preventDefault() })
 
     window.loadUrl('file://' + __dirname + '/index.html')
 })
