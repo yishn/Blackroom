@@ -28,27 +28,26 @@ function setShowCaption(show) {
 
 function loadImage(index) {
     var url = imageList[index]
+    $('#box .inner').removeClass('show')
 
     // First get image size
 
     var img = $('#test').attr('src', url)
     var screenSize = [$('#overlay').width(), $('#overlay').height()]
-    var maxSize = [screenSize[0] * settings.maxscale, screenSize[1] * settings.maxscale8]
+    var maxSize = [screenSize[0] * settings.maxscale, screenSize[1] * settings.maxscale]
 
     img.on('load', function() {
         var size = [img.width(), img.height()]
         var resizedSize = size
 
-        setCaption(path.basename(url), size[0] + '×' + size[1])
-
         // Calculate resized image size
 
-        if (size[0] > maxSize[0]) {
-            var height = maxSize[0] / size[0] * size[1]
+        if (resizedSize[0] > maxSize[0]) {
+            var height = maxSize[0] / resizedSize[0] * resizedSize[1]
             resizedSize = [Math.round(maxSize[0]), Math.round(height)]
         }
-        if (size[1] > maxSize[1]) {
-            var width = maxSize[1] / size[1] * size[0]
+        if (resizedSize[1] > maxSize[1]) {
+            var width = maxSize[1] / resizedSize[1] * resizedSize[0]
             resizedSize = [Math.round(width), Math.round(maxSize[1])]
         }
 
@@ -62,6 +61,8 @@ function loadImage(index) {
             .css('height', resizedSize[1])
 
         setTimeout(function() {
+            setCaption(path.basename(url), size[0] + '×' + size[1])
+
             $('#box .inner img').attr('src', url)
                 .css('transform', 'translate(-50%, -50%) scale(' + scale + ')')
                 .parent()
@@ -86,7 +87,7 @@ function closeBox(callback) {
 
 $(window).on('load', function() {
     $('#overlay').addClass('show').on('click', function() { closeBox(app.quit) })
-    $('#box .inner').on('click', function() { setShowCaption(!getShowCaption()) })
+    $('#box .inner img').on('click', function() { setShowCaption(!getShowCaption()) })
     if (settings.showcaption) $('#box .caption').addClass('show')
 
     var url = process.argv[1]
