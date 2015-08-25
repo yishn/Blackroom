@@ -126,13 +126,12 @@ $(window).on('load', function() {
 
     loadImage(currentImageIndex)
 }).on('keyup', function() {
-    if (event.keyCode == 37) {
+    if (event.keyCode == 37)
         previousImage()
-    } else if (event.keyCode == 39) {
+    else if (event.keyCode == 39)
         nextImage()
-    } else if (event.keyCode == 27) {
+    else if (event.keyCode == 27)
         closeBox(app.quit)
-    }
 })
 
 if (process.argv.length < 2) {
