@@ -1,6 +1,6 @@
 # Blackroom
 
-A lightbox image viewer for the desktop. This is a work in progress.
+A butter-smooth lightbox image viewer for the desktop. This is a work in progress.
 
 ![Screenshot](screenshot.png)
 

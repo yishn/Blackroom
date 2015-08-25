@@ -99,16 +99,16 @@ $(window).on('load', function() {
         app.quit()
     }
 
-    loadImage(url)
-    imageList = fs.readdirSync(dir).filter(function(x) {
-        return settings.extensions.indexOf(path.extname(x)) >= 0
-    })
+    imageList = fs.readdirSync(dir).filter(function(x) { return settings.extensions.indexOf(path.extname(x)) >= 0 })
     current = imageList.indexOf(name)
+    imageList = imageList.map(function(x) { return dir + path.sep + x })
 
     if (current < 0) {
         dialog.showErrorBox(app.getName(), 'The file extension is not supported.')
         app.quit()
     }
+
+    loadImage(url)
 })
 
 if (process.argv.length < 2) {
