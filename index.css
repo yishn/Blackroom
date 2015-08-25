@@ -57,7 +57,7 @@ img {
     #box .prev, #box .next {
         position: absolute;
         top: 50%;
-        right: -28px;
+        right: -30px;
         height: 28px;
         width: 28px;
         background: rgba(0, 0, 0, .7) url('img/arrow.png') no-repeat center;
@@ -67,7 +67,7 @@ img {
     }
     #box .prev {
         right: auto;
-        left: -28px;
+        left: -30px;
         transform: scaleX(-1) translateY(-50%);
     }
     #box .inner.show .prev { left: 0 }
