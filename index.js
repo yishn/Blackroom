@@ -85,19 +85,23 @@ function closeBox(callback) {
     }, 500)
 }
 
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % imageList.length
+    loadImage(currentImageIndex)
+}
+
+function previousImage() {
+    currentImageIndex = (currentImageIndex + imageList.length - 1) % imageList.length
+    loadImage(currentImageIndex)
+}
+
 $(window).on('load', function() {
     $('#overlay').addClass('show').on('click', function() { closeBox(app.quit) })
     $('#box .inner img').on('click', function() { setShowCaption(!getShowCaption()) })
     if (settings.showcaption) $('#box .caption').addClass('show')
 
-    $('#box .prev').on('click', function() {
-        currentImageIndex = (currentImageIndex + imageList.length - 1) % imageList.length
-        loadImage(currentImageIndex)
-    })
-    $('#box .next').on('click', function() {
-        currentImageIndex = (currentImageIndex + 1) % imageList.length
-        loadImage(currentImageIndex)
-    })
+    $('#box .prev').on('click', previousImage)
+    $('#box .next').on('click', nextImage)
 
     var url = process.argv[1]
     var name = path.basename(url)
@@ -121,6 +125,14 @@ $(window).on('load', function() {
     }
 
     loadImage(currentImageIndex)
+}).on('keyup', function() {
+    if (event.keyCode == 37) {
+        previousImage()
+    } else if (event.keyCode == 39) {
+        nextImage()
+    } else if (event.keyCode == 27) {
+        closeBox(app.quit)
+    }
 })
 
 if (process.argv.length < 2) {
