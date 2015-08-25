@@ -54,6 +54,27 @@ img {
     #box.show {
         opacity: 1;
     }
+    #box .prev, #box .next {
+        position: absolute;
+        top: 50%;
+        right: -28px;
+        height: 28px;
+        width: 28px;
+        background: rgba(0, 0, 0, .7) url('img/arrow.png') no-repeat center;
+        transform: translateY(-50%);
+        transition: .2s left, .2s right;
+        z-index: 100;
+    }
+    #box .prev {
+        right: auto;
+        left: -28px;
+        transform: scaleX(-1) translateY(-50%);
+    }
+    #box .inner.show .prev { left: 0 }
+    #box .inner.show .next { right: 0 }
+    #box .prev:hover, #box .next:hover, #box .prev:focus, #box .next:focus {
+        background-color: black;
+    }
     #box .inner {
         height: 70px;
         width: 70px;
