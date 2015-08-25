@@ -6,7 +6,7 @@ var app = remote.require('app')
 var process = remote.require('process')
 var dialog = remote.require('dialog')
 
-var imageList, current
+var imageList, currentImageIndex
 
 function getCaption() {
     return [$('#box h1').text(), $('#box h1 + p').text()]
@@ -26,7 +26,9 @@ function setShowCaption(show) {
     else $('#box .caption').removeClass('show')
 }
 
-function loadImage(url) {
+function loadImage(index) {
+    var url = imageList[index]
+
     // First get image size
 
     var img = $('#test').attr('src', url)
@@ -100,15 +102,15 @@ $(window).on('load', function() {
     }
 
     imageList = fs.readdirSync(dir).filter(function(x) { return settings.extensions.indexOf(path.extname(x)) >= 0 })
-    current = imageList.indexOf(name)
+    currentImageIndex = imageList.indexOf(name)
     imageList = imageList.map(function(x) { return dir + path.sep + x })
 
-    if (current < 0) {
+    if (currentImageIndex < 0) {
         dialog.showErrorBox(app.getName(), 'The file extension is not supported.')
         app.quit()
     }
 
-    loadImage(url)
+    loadImage(currentImageIndex)
 })
 
 if (process.argv.length < 2) {
