@@ -101,7 +101,6 @@ $(window).on('load', function() {
 
     var url = process.argv[1]
     var name = path.basename(url)
-    var ext = path.extname(url)
     var dir = path.dirname(url)
 
     try {
@@ -111,7 +110,8 @@ $(window).on('load', function() {
         app.quit()
     }
 
-    imageList = fs.readdirSync(dir).filter(function(x) { return settings.extensions.indexOf(path.extname(x)) >= 0 })
+    imageList = fs.readdirSync(dir)
+        .filter(function(x) { return settings.extensions.indexOf(path.extname(x).toLowerCase()) >= 0 })
     currentImageIndex = imageList.indexOf(name)
     imageList = imageList.map(function(x) { return dir + path.sep + x })
 
