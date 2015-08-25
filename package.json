@@ -2,7 +2,7 @@
     "name": "blackroom",
     "productName": "Blackroom",
     "version": "0.1.0",
-    "description": "A lightbox image viewer for the desktop.",
+    "description": "A butter-smooth lightbox image viewer for the desktop.",
     "author": "Yichuan Shen",
     "main": "main.js",
     "repository": {
