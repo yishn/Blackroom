@@ -76,10 +76,10 @@ img {
         background-color: black;
     }
     #box .inner {
-        height: 70px;
-        width: 70px;
-        min-height: 70px;
-        min-width: 70px;
+        height: 90px;
+        width: 90px;
+        min-height: 90px;
+        min-width: 90px;
         position: relative;
         overflow: hidden;
         transition: .5s height, .5s width;
