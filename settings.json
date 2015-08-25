@@ -1,4 +1,5 @@
 {
+    "extensions": [".png", ".jpg", ".jpeg", ".gif", ".svg"],
     "maxscale": 0.8,
     "showcaption": false
 }

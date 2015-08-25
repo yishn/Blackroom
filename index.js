@@ -1,9 +1,12 @@
 var remote = require('remote')
+var fs = require('fs')
 var path = require('path')
 var settings = require('./settings.json')
 var app = remote.require('app')
 var process = remote.require('process')
 var dialog = remote.require('dialog')
+
+var imageList, current
 
 function getCaption() {
     return [$('#box h1').text(), $('#box h1 + p').text()]
@@ -84,7 +87,28 @@ $(window).on('load', function() {
     $('#box .inner').on('click', function() { setShowCaption(!getShowCaption()) })
     if (settings.showcaption) $('#box .caption').addClass('show')
 
-    loadImage(process.argv[1])
+    var url = process.argv[1]
+    var name = path.basename(url)
+    var ext = path.extname(url)
+    var dir = path.dirname(url)
+
+    try {
+        fs.accessSync(url, fs.R_OK)
+    } catch(e) {
+        dialog.showErrorBox(app.getName(), 'The given file cannot be read.')
+        app.quit()
+    }
+
+    loadImage(url)
+    imageList = fs.readdirSync(dir).filter(function(x) {
+        return settings.extensions.indexOf(path.extname(x)) >= 0
+    })
+    current = imageList.indexOf(name)
+
+    if (current < 0) {
+        dialog.showErrorBox(app.getName(), 'The file extension is not supported.')
+        app.quit()
+    }
 })
 
 if (process.argv.length < 2) {
