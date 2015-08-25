@@ -90,6 +90,15 @@ $(window).on('load', function() {
     $('#box .inner img').on('click', function() { setShowCaption(!getShowCaption()) })
     if (settings.showcaption) $('#box .caption').addClass('show')
 
+    $('#box .prev').on('click', function() {
+        currentImageIndex = (currentImageIndex + imageList.length - 1) % imageList.length
+        loadImage(currentImageIndex)
+    })
+    $('#box .next').on('click', function() {
+        currentImageIndex = (currentImageIndex + 1) % imageList.length
+        loadImage(currentImageIndex)
+    })
+
     var url = process.argv[1]
     var name = path.basename(url)
     var ext = path.extname(url)
