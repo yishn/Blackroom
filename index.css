@@ -72,7 +72,7 @@ img {
     }
     #box .inner.show .prev { left: 0 }
     #box .inner.show .next { right: 0 }
-    #box .prev:hover, #box .next:hover, #box .prev:focus, #box .next:focus {
+    #box .prev:hover, #box .next:hover {
         background-color: black;
     }
     #box .inner {
