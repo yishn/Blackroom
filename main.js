@@ -1,32 +1,31 @@
-var app = require('app')
-var BrowserWindow = require('browser-window')
+const {app, BrowserWindow} = require('electron')
 
-var window = null
+let window = null
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function() { app.quit() })
+app.on('window-all-closed', () => app.quit())
 
-app.on('ready', function() {
-    var size = require('screen').getPrimaryDisplay().bounds
+app.on('ready', () => {
+    let size = require('electron').screen.getPrimaryDisplay().bounds
 
     window = new BrowserWindow({
-        'x': 0,
-        'y': 0,
-        'width': size.width,
-        'height': size.height,
-        'always-on-top': true,
-        'resizable': false,
-        'skip-taskbar': true,
-        'show': false,
-        'frame': false,
-        'transparent': true
+        x: 0,
+        y: 0,
+        width: size.width,
+        height: size.height,
+        alwaysOnTop: true,
+        resizable: false,
+        skipTaskbar: true,
+        show: false,
+        frame: false,
+        transparent: true
     })
 
     // window.toggleDevTools()
 
-    window.on('closed', function() { window = null })
-    window.webContents.on('did-finish-load', function() { window.show() })
-    window.webContents.on('will-navigate', function(e) { e.preventDefault() })
+    window.on('closed', () => window = null)
+    window.webContents.on('did-finish-load', () => window.show())
+    window.webContents.on('will-navigate', e => e.preventDefault())
 
-    window.loadUrl('file://' + __dirname + '/index.html')
+    window.loadURL('file://' + __dirname + '/index.html')
 })

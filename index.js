@@ -1,10 +1,8 @@
-var remote = require('remote')
-var fs = require('fs')
-var path = require('path')
-var settings = require('./settings.json')
-var app = remote.require('app')
-var process = remote.require('process')
-var dialog = remote.require('dialog')
+const {app, process, dialog} = require('electron').remote
+const $ = require('sprint-js')
+const fs = require('fs')
+const path = require('path')
+const settings = require('./settings.json')
 
 var imageList, currentImageIndex
 
@@ -36,7 +34,7 @@ function loadImage(index) {
     var screenSize = [$('#overlay').width(), $('#overlay').height()]
     var maxSize = [screenSize[0] * settings.maxscale, screenSize[1] * settings.maxscale]
 
-    img.on('load', function() {
+    img.on('load', () => {
         var size = [img.width(), img.height()]
         var resizedSize = size
 
@@ -60,7 +58,7 @@ function loadImage(index) {
             .css('width', resizedSize[0])
             .css('height', resizedSize[1])
 
-        setTimeout(function() {
+        setTimeout(() => {
             setCaption(path.basename(url), size[0] + '×' + size[1])
 
             $('#box .inner img').attr('src', url)
@@ -74,7 +72,7 @@ function loadImage(index) {
 function closeBox(callback) {
     $('#box .inner').removeClass('show')
 
-    setTimeout(function() {
+    setTimeout(() => {
         $('#overlay').removeClass('show')
         $('#box').removeClass('show')
             .children('.inner')
@@ -95,9 +93,9 @@ function previousImage() {
     loadImage(currentImageIndex)
 }
 
-$(window).on('load', function() {
-    $('#overlay').addClass('show').on('click', function() { closeBox(app.quit) })
-    $('#box .inner img').on('click', function() { setShowCaption(!getShowCaption()) })
+$(window).on('load', () => {
+    $('#overlay').addClass('show').on('click', () => closeBox(app.quit))
+    $('#box .inner img').on('click', () => setShowCaption(!getShowCaption()))
     if (settings.showcaption) $('#box .caption').addClass('show')
 
     $('#box .prev').on('click', previousImage)
@@ -115,9 +113,9 @@ $(window).on('load', function() {
     }
 
     imageList = fs.readdirSync(dir)
-        .filter(function(x) { return settings.extensions.indexOf(path.extname(x).toLowerCase()) >= 0 })
+        .filter(x => settings.extensions.indexOf(path.extname(x).toLowerCase()) >= 0)
     currentImageIndex = imageList.indexOf(name)
-    imageList = imageList.map(function(x) { return dir + path.sep + x })
+    imageList = imageList.map(x => dir + path.sep + x)
 
     if (currentImageIndex < 0) {
         dialog.showErrorBox(app.getName(), 'The file extension is not supported.')
@@ -125,12 +123,12 @@ $(window).on('load', function() {
     }
 
     loadImage(currentImageIndex)
-}).on('keyup', function() {
-    if (event.keyCode == 37)
+}).on('keyup', (evt) => {
+    if (evt.keyCode == 37)
         previousImage()
-    else if (event.keyCode == 39)
+    else if (evt.keyCode == 39)
         nextImage()
-    else if (event.keyCode == 27)
+    else if (evt.keyCode == 27)
         closeBox(app.quit)
 })
 
