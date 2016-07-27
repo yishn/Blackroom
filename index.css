@@ -10,7 +10,9 @@ body {
 
 body, input, button, select, option {
     color: white;
-    font: 16px/1.5 '.SFNSText-Regular', 'Segoe UI', 'Open Sans', Ubuntu, 'Lucida Grande', Cantarell, sans-serif;
+    font: menu;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 body, a {
