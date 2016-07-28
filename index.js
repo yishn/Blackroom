@@ -20,8 +20,7 @@ function getShowCaption() {
 }
 
 function setShowCaption(show) {
-    if (show) $('#box .caption').addClass('show')
-    else $('#box .caption').removeClass('show')
+    $('#box .caption').toggleClass('show', show)
 }
 
 function loadImage(index) {
@@ -56,18 +55,19 @@ function loadImage(index) {
 
         // Animate box and show image
 
-        $('#box').addClass('show')
-            .children('.inner')
-            .css('width', resizedSize[0])
-            .css('height', resizedSize[1])
+        $('#box')
+        .addClass('show')
+        .children('.inner')
+        .css('width', resizedSize[0])
+        .css('height', resizedSize[1])
 
         setTimeout(() => {
             setCaption(path.basename(url), size[0] + '×' + size[1])
 
-            $('#box .inner img').attr('src', url)
-                .css('transform', 'translate(-50%, -50%) scale(' + scale + ')')
-                .parent()
-                .addClass('show')
+            $('#box .inner img')
+            .attr('src', url)
+            .css('transform', 'translate(-50%, -50%) scale(' + scale + ')')
+            .on('load', () => $('#box .inner').addClass('show'))
 
             busy = false
         }, 500)
@@ -79,10 +79,12 @@ function closeBox(callback) {
 
     setTimeout(() => {
         $('#overlay').removeClass('show')
-        $('#box').removeClass('show')
-            .children('.inner')
-            .css('width', 50)
-            .css('height', 50)
+
+        $('#box')
+        .removeClass('show')
+        .children('.inner')
+        .css('width', 50)
+        .css('height', 50)
 
         setTimeout(callback, 1000)
     }, 500)
