@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const settings = require('./settings.json')
 
-var imageList, currentImageIndex
+let imageList, currentImageIndex, busy
 
 function getCaption() {
     return [$('#box h1').text(), $('#box h1 + p').text()]
@@ -25,31 +25,34 @@ function setShowCaption(show) {
 }
 
 function loadImage(index) {
-    var url = imageList[index]
+    if (busy) return
+
+    let url = imageList[index]
     $('#box .inner').removeClass('show')
+    busy = true
 
     // First get image size
 
-    var img = $('#test').attr('src', url)
-    var screenSize = [$('#overlay').width(), $('#overlay').height()]
-    var maxSize = [screenSize[0] * settings.maxscale, screenSize[1] * settings.maxscale]
+    let img = $('#test').attr('src', url)
+    let screenSize = [$('#overlay').width(), $('#overlay').height()]
+    let maxSize = [screenSize[0] * settings.maxscale, screenSize[1] * settings.maxscale]
 
     img.on('load', () => {
-        var size = [img.width(), img.height()]
-        var resizedSize = size
+        let size = [img.width(), img.height()]
+        let resizedSize = size
 
         // Calculate resized image size
 
         if (resizedSize[0] > maxSize[0]) {
-            var height = maxSize[0] / resizedSize[0] * resizedSize[1]
+            let height = maxSize[0] / resizedSize[0] * resizedSize[1]
             resizedSize = [Math.round(maxSize[0]), Math.round(height)]
         }
         if (resizedSize[1] > maxSize[1]) {
-            var width = maxSize[1] / resizedSize[1] * resizedSize[0]
+            let width = maxSize[1] / resizedSize[1] * resizedSize[0]
             resizedSize = [Math.round(width), Math.round(maxSize[1])]
         }
 
-        var scale = resizedSize[0] / size[0]
+        let scale = resizedSize[0] / size[0]
 
         // Animate box and show image
 
@@ -65,6 +68,8 @@ function loadImage(index) {
                 .css('transform', 'translate(-50%, -50%) scale(' + scale + ')')
                 .parent()
                 .addClass('show')
+
+            busy = false
         }, 500)
     })
 }
@@ -101,9 +106,9 @@ $(window).on('load', () => {
     $('#box .prev').on('click', previousImage)
     $('#box .next').on('click', nextImage)
 
-    var url = process.argv[1]
-    var name = path.basename(url)
-    var dir = path.dirname(url)
+    let url = process.argv[1]
+    let name = path.basename(url)
+    let dir = path.dirname(url)
 
     try {
         fs.accessSync(url, fs.R_OK)
