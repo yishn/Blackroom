@@ -27,5 +27,5 @@ app.on('ready', () => {
     window.webContents.on('did-finish-load', () => window.show())
     window.webContents.on('will-navigate', e => e.preventDefault())
 
-    window.loadURL('file://' + __dirname + '/index.html')
+    window.loadURL('file://' + __dirname + '/browser/index.html')
 })

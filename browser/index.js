@@ -2,7 +2,7 @@ const {app, process, dialog} = require('electron').remote
 const $ = require('sprint-js')
 const fs = require('fs')
 const path = require('path')
-const settings = require('./settings.json')
+const settings = require('../settings.json')
 
 let imageList, currentImageIndex, busy
 
