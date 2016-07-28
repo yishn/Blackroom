@@ -62,7 +62,9 @@ img {
         right: -30px;
         height: 28px;
         width: 28px;
-        background: rgba(0, 0, 0, .7) url('img/arrow.png') no-repeat center;
+        background: url('node_modules/octicons/build/svg/chevron-right.svg') center / 20px 20px no-repeat;
+        background-color: rgba(255, 255, 255, .7);
+        -webkit-filter: invert(100%);
         transform: translateY(-50%);
         transition: .2s left, .2s right;
         z-index: 100;
@@ -75,7 +77,7 @@ img {
     #box .inner.show .prev { left: 0 }
     #box .inner.show .next { right: 0 }
     #box .prev:hover, #box .next:hover {
-        background-color: black;
+        background-color: white;
     }
     #box .inner {
         height: 90px;

@@ -1,22 +1,23 @@
 {
-    "name": "blackroom",
-    "productName": "Blackroom",
-    "version": "0.2.0",
-    "description": "A buttery smooth lightbox image viewer for the desktop.",
-    "author": "Yichuan Shen",
-    "main": "main.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/yishn/Blackroom"
-    },
-    "bugs": {
-        "url": "https://github.com/yishn/Blackroom/issues"
-    },
-    "license": "MIT",
-    "scripts": {
-        "build": "electron-packager ./ blackroom --platform=win32 --arch=all --app-version=0.2.0 --build-version=0.2.0 --version=1.3.1 --out=./bin --overwrite --icon=./icon.ico --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --version-string.CompanyName=\"Yichuan Shen\" --version-string.FileDescription=\"Blackroom\" --version-string.OriginalFilename=\"blackroom.exe\" --version-string.ProductName=\"Blackroom\" --version-string.InternalName=\"blackroom.exe\" --ignore=^test$ --asar"
-    },
-    "dependencies": {
-        "sprint-js": "^0.1.0"
-    }
+  "name": "blackroom",
+  "productName": "Blackroom",
+  "version": "0.2.0",
+  "description": "A buttery smooth lightbox image viewer for the desktop.",
+  "author": "Yichuan Shen",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yishn/Blackroom"
+  },
+  "bugs": {
+    "url": "https://github.com/yishn/Blackroom/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "electron-packager ./ blackroom --platform=win32 --arch=all --app-version=0.2.0 --build-version=0.2.0 --version=1.3.1 --out=./bin --overwrite --icon=./icon.ico --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --version-string.CompanyName=\"Yichuan Shen\" --version-string.FileDescription=\"Blackroom\" --version-string.OriginalFilename=\"blackroom.exe\" --version-string.ProductName=\"Blackroom\" --version-string.InternalName=\"blackroom.exe\" --ignore=^test$ --asar"
+  },
+  "dependencies": {
+    "octicons": "^4.3.0",
+    "sprint-js": "^0.1.0"
+  }
 }

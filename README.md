@@ -12,6 +12,8 @@ A butter-smooth lightbox image viewer for the desktop. [Download the latest vers
   ([MIT License](https://github.com/atom/electron/blob/master/LICENSE))
 * [Sprint](https://github.com/bendc/sprint)
   ([MIT License](https://github.com/bendc/sprint/blob/master/LICENSE.txt))
+* [Octicons](https://octicons.github.com/)
+  ([License](https://github.com/github/octicons/blob/master/LICENSE.txt))
 
 ## License
 
