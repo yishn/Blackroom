@@ -6,6 +6,30 @@ A butter-smooth lightbox image viewer for the desktop. [Download the latest vers
 
 ![Screenshot](screenshot.png)
 
+## Building
+
+Make sure you have Node.js and npm installed. First, clone Blackroom:
+
+~~~
+$ git clone https://github.com/yishn/Blackroom
+$ cd Blackroom
+~~~
+
+Install `electron-packager` globally and the dependencies of Blackroom:
+
+~~~
+$ npm install electron-packager -g
+$ npm install
+~~~
+
+You can build Sabaki on Windows by using:
+
+~~~
+$ npm run build
+~~~
+
+The binaries will be in `Blackroom/bin/`.
+
 ## Third Party Libraries
 
 * [Electron](http://electron.atom.io/)
