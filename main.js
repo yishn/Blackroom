@@ -9,6 +9,7 @@ app.on('ready', () => {
     let size = require('electron').screen.getPrimaryDisplay().bounds
 
     window = new BrowserWindow({
+        title: app.getName(),
         x: 0,
         y: 0,
         width: size.width,
