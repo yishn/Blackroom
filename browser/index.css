@@ -103,24 +103,29 @@ img {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: -50px;
-        height: 30px;
-        padding: 10px 20px;
+        bottom: -3.3em;
+        height: 3.3em;
+        padding: 0 20px;
+        overflow: hidden;
         background: rgba(0, 0, 0, .8);
         font-weight: lighter;
-        line-height: 30px;
+        line-height: 3.3em;
         transition: .2s bottom;
     }
     #box .inner.show .caption.show {
         bottom: 0;
     }
     #box .inner .caption h1 {
-        display: inline;
-        font-size: 22px;
+        float: left;
+        overflow: hidden;
+        max-width: 100%;
+        font-size: 1.3em;
         font-weight: lighter;
+        text-overflow: ellipsis;
     }
     #box .inner .caption p {
-        display: inline;
+        float: left;
+        margin-top: 2px;
         margin-left: 10px;
         color: #ccc;
 }

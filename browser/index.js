@@ -12,7 +12,7 @@ function getCaption() {
 }
 
 function setCaption(text, details) {
-    $('#box h1').text(text)
+    $('#box h1').text(text).attr('title', text)
     $('#box h1 + p').text(details)
 }
 
