@@ -1,4 +1,5 @@
-const {app, process, dialog} = require('electron').remote
+const {ipcRenderer, remote} = require('electron')
+const {app, process, dialog} = remote
 const $ = require('sprint-js')
 const fs = require('fs')
 const path = require('path')
@@ -100,7 +101,13 @@ function previousImage() {
     loadImage(currentImageIndex)
 }
 
-$(window).on('load', () => {
+ipcRenderer.on('load-file', (evt, url) => {
+    if (!url) {
+        dialog.showErrorBox(app.getName(), `Please run ${app.getName()} by opening an image file.`)
+        app.quit()
+        return
+    }
+
     $('#overlay').addClass('show').on('click', () => closeBox(app.quit))
     $('#box .inner img').on('click', () => setShowCaption(!getShowCaption()))
     if (settings.showcaption) $('#box .caption').addClass('show')
@@ -108,7 +115,6 @@ $(window).on('load', () => {
     $('#box .prev').on('click', previousImage)
     $('#box .next').on('click', nextImage)
 
-    let url = process.argv[1]
     let name = path.basename(url)
     let dir = path.dirname(url)
 
@@ -117,6 +123,7 @@ $(window).on('load', () => {
     } catch(e) {
         dialog.showErrorBox(app.getName(), 'The given file cannot be read.')
         app.quit()
+        return
     }
 
     imageList = fs.readdirSync(dir)
@@ -127,10 +134,14 @@ $(window).on('load', () => {
     if (currentImageIndex < 0) {
         dialog.showErrorBox(app.getName(), 'The file extension is not supported.')
         app.quit()
+        return
     }
 
+    remote.getCurrentWindow().show()
     loadImage(currentImageIndex)
-}).on('keyup', (evt) => {
+})
+
+$(document).on('keyup', evt => {
     if (evt.keyCode == 37)
         previousImage()
     else if (evt.keyCode == 39)
@@ -138,8 +149,3 @@ $(window).on('load', () => {
     else if (evt.keyCode == 27)
         closeBox(app.quit)
 })
-
-if (process.argv.length < 2) {
-    dialog.showErrorBox(app.getName(), 'Please run ' + app.getName() + ' by opening an image file.')
-    app.quit()
-}
