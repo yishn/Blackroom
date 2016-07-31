@@ -2,7 +2,7 @@
 
 <img src="logo.png" width="100" height="100">
 
-A butter-smooth lightbox image viewer for the desktop. [Download the latest version](https://github.com/yishn/Blackroom/releases/) of Blackroom.
+A buttery smooth lightbox image viewer for the desktop. [Download the latest version](https://github.com/yishn/Blackroom/releases/) of Blackroom.
 
 ![Screenshot](screenshot.png)
 
@@ -25,7 +25,13 @@ $ npm install
 You can build Sabaki on Windows by using:
 
 ~~~
-$ npm run build
+$ npm run build:win
+~~~
+
+For macOS use:
+
+~~~
+$ npm run build:osx
 ~~~
 
 The binaries will be in `Blackroom/bin/`.
