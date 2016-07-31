@@ -6,14 +6,15 @@ let window, isReady, file
 app.on('window-all-closed', () => app.quit())
 
 app.on('ready', () => {
-    let size = require('electron').screen.getPrimaryDisplay().bounds
+    let bounds = require('electron').screen.getPrimaryDisplay().workArea
 
     window = new BrowserWindow({
         title: app.getName(),
-        x: 0,
-        y: 0,
-        width: size.width,
-        height: size.height,
+        x: bounds.x,
+        y: bounds.y,
+        width: bounds.width,
+        height: bounds.height,
+        enableLargerThanScreen: true,
         alwaysOnTop: true,
         resizable: false,
         skipTaskbar: true,
