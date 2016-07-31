@@ -101,6 +101,19 @@ function previousImage() {
     loadImage(currentImageIndex)
 }
 
+$(document).on('keyup', evt => {
+    if (evt.keyCode == 37) {
+        // Left
+        previousImage()
+    } else if (evt.keyCode == 39) {
+        // Right
+        nextImage()
+    } else if (evt.keyCode == 27) {
+        // Escape
+        closeBox(() => app.quit())
+    }
+})
+
 ipcRenderer.on('load-file', (evt, url) => {
     if (!url) {
         dialog.showErrorBox(app.getName(), `Please run ${app.getName()} by opening an image file.`)
@@ -139,13 +152,4 @@ ipcRenderer.on('load-file', (evt, url) => {
 
     remote.getCurrentWindow().show()
     loadImage(currentImageIndex)
-})
-
-$(document).on('keyup', evt => {
-    if (evt.keyCode == 37)
-        previousImage()
-    else if (evt.keyCode == 39)
-        nextImage()
-    else if (evt.keyCode == 27)
-        closeBox(app.quit)
 })
