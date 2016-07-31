@@ -1,7 +1,7 @@
 {
   "name": "blackroom",
   "productName": "Blackroom",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A buttery smooth lightbox image viewer for the desktop.",
   "author": "Yichuan Shen",
   "main": "main.js",
@@ -14,8 +14,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "build:win": "electron-packager ./ blackroom --platform=win32 --arch=all --app-version=0.2.0 --build-version=0.2.0 --version=1.3.1 --out=./bin --overwrite --icon=./data/icon.ico --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --version-string.CompanyName=\"Yichuan Shen\" --version-string.FileDescription=\"Blackroom\" --version-string.OriginalFilename=\"blackroom.exe\" --version-string.ProductName=\"Blackroom\" --version-string.InternalName=\"blackroom.exe\" --ignore=^test$ --asar",
-    "build:osx": "electron-packager ./ Blackroom --platform=darwin --arch=all --app-version=0.2.0 --build-version=0.2.0 --version=1.3.1 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --app-category-type=public.app-category.utilities --extend-info=./data/extra-info.plist --icon=./data/icon.icns ---ignore=^test$ --asar"
+    "build:win": "electron-packager ./ blackroom --platform=win32 --arch=all --app-version=0.3.0 --build-version=0.3.0 --version=1.3.1 --out=./bin --overwrite --icon=./data/icon.ico --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --version-string.CompanyName=\"Yichuan Shen\" --version-string.FileDescription=\"Blackroom\" --version-string.OriginalFilename=\"blackroom.exe\" --version-string.ProductName=\"Blackroom\" --version-string.InternalName=\"blackroom.exe\" --ignore=^test$ --asar",
+    "build:osx": "electron-packager ./ Blackroom --platform=darwin --arch=all --app-version=0.3.0 --build-version=0.3.0 --version=1.3.1 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --app-category-type=public.app-category.utilities --extend-info=./data/extra-info.plist --icon=./data/icon.icns ---ignore=^test$ --asar"
   },
   "dependencies": {
     "octicons": "^4.3.0",
