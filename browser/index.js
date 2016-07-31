@@ -35,7 +35,7 @@ function loadImage(index) {
 
     let img = $('#test').attr('src', url)
     let screenSize = [$('#overlay').width(), $('#overlay').height()]
-    let maxSize = [screenSize[0] * settings.maxscale, screenSize[1] * settings.maxscale]
+    let maxSize = screenSize.map(x => x * settings.maxscale)
 
     img.on('load', () => {
         let size = [img.width(), img.height()]
@@ -47,6 +47,7 @@ function loadImage(index) {
             let height = maxSize[0] / resizedSize[0] * resizedSize[1]
             resizedSize = [Math.round(maxSize[0]), Math.round(height)]
         }
+
         if (resizedSize[1] > maxSize[1]) {
             let width = maxSize[1] / resizedSize[1] * resizedSize[0]
             resizedSize = [Math.round(width), Math.round(maxSize[1])]
@@ -63,7 +64,7 @@ function loadImage(index) {
         .css('height', resizedSize[1])
 
         setTimeout(() => {
-            setCaption(path.basename(url), size[0] + '×' + size[1])
+            setCaption(path.basename(url), size.join('x'))
 
             $('#box .inner img')
             .attr('src', url)
@@ -101,7 +102,14 @@ function previousImage() {
     loadImage(currentImageIndex)
 }
 
-$(document).on('keyup', evt => {
+$(document).ready(() => {
+    $('#overlay').addClass('show').on('click', () => closeBox(() => app.quit()))
+    $('#box .inner img').on('click', () => setShowCaption(!getShowCaption()))
+    if (settings.showcaption) $('#box .caption').addClass('show')
+
+    $('#box .prev').on('click', previousImage)
+    $('#box .next').on('click', nextImage)
+}).on('keyup', evt => {
     if (evt.keyCode == 37) {
         // Left
         previousImage()
@@ -121,13 +129,6 @@ ipcRenderer.on('load-file', (evt, url) => {
         return
     }
 
-    $('#overlay').addClass('show').on('click', () => closeBox(app.quit))
-    $('#box .inner img').on('click', () => setShowCaption(!getShowCaption()))
-    if (settings.showcaption) $('#box .caption').addClass('show')
-
-    $('#box .prev').on('click', previousImage)
-    $('#box .next').on('click', nextImage)
-
     let name = path.basename(url)
     let dir = path.dirname(url)
 
@@ -139,8 +140,8 @@ ipcRenderer.on('load-file', (evt, url) => {
         return
     }
 
-    imageList = fs.readdirSync(dir)
-        .filter(x => settings.extensions.indexOf(path.extname(x).toLowerCase()) >= 0)
+    extensionSupported = x => settings.extensions.indexOf(path.extname(x).toLowerCase()) >= 0
+    imageList = fs.readdirSync(dir).filter(extensionSupported)
     currentImageIndex = imageList.indexOf(name)
     imageList = imageList.map(x => dir + path.sep + x)
 
