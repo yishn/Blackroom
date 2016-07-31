@@ -2,7 +2,9 @@
 
 <img src="logo.png" width="100" height="100">
 
-Remember those lightboxes that were all the hype in 2005? Ever wished you can preview image files in a lightbox on your desktop? Look no more! Blackroom is a buttery smooth lightbox image viewer for Windows and Mac. [Download the latest version](https://github.com/yishn/Blackroom/releases/).
+A buttery smooth lightbox image viewer for the desktop.
+
+Remember those lightboxes that were all the hype in 2005? Ever wished you can preview image files in a lightbox on your desktop? Look no more! [Download the latest version](https://github.com/yishn/Blackroom/releases/).
 
 ![Screenshot](screenshot.png)
 
