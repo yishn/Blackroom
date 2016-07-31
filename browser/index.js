@@ -104,11 +104,11 @@ function previousImage() {
 
 $(document).ready(() => {
     $('#overlay').addClass('show').on('click', () => closeBox(() => app.quit()))
-    $('#box .inner img').on('click', () => setShowCaption(!getShowCaption()))
+    $('#box img').on('click', () => setShowCaption(!getShowCaption()))
     if (settings.showcaption) $('#box .caption').addClass('show')
 
-    $('#box .prev').on('click', previousImage)
-    $('#box .next').on('click', nextImage)
+    $('#box .prev').on('click', () => previousImage())
+    $('#box .next').on('click', () => nextImage())
 }).on('keyup', evt => {
     if (evt.keyCode == 37) {
         // Left
@@ -143,7 +143,7 @@ ipcRenderer.on('load-file', (evt, url) => {
     extensionSupported = x => settings.extensions.indexOf(path.extname(x).toLowerCase()) >= 0
     imageList = fs.readdirSync(dir).filter(extensionSupported)
     currentImageIndex = imageList.indexOf(name)
-    imageList = imageList.map(x => dir + path.sep + x)
+    imageList = imageList.map(x => path.join(dir, x))
 
     if (currentImageIndex < 0) {
         dialog.showErrorBox(app.getName(), 'The file extension is not supported.')
