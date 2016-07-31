@@ -2,7 +2,28 @@ const {app, dialog, BrowserWindow} = require('electron')
 
 let window, isReady, file
 
-// Quit when all windows are closed.
+function checkForUpdates(callback) {
+    let url = `https://github.com/yishn/${app.getName()}/releases/latest`
+
+    // Check internet connection first
+    require('dns').lookup('github.com', err => {
+        if (err) return callback(err)
+
+        require('https').get(url, response => {
+            let content = ''
+
+            response.on('data', chunk => {
+                content += chunk
+            })
+
+            response.on('end', () => {
+                var hasUpdates = content.indexOf('/tag/v' + app.getVersion()) == -1
+                callback(hasUpdates, url)
+            })
+        }).on('error', err => callback(err))
+    })
+}
+
 app.on('window-all-closed', () => app.quit())
 
 app.on('ready', () => {
