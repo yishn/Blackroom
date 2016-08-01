@@ -56,7 +56,7 @@ img {
     #box.show {
         opacity: 1;
     }
-    #box .prev, #box .next {
+    #box .prev, #box .next, #box .update {
         position: absolute;
         top: 50%;
         right: -30px;
@@ -66,7 +66,7 @@ img {
         background-color: rgba(255, 255, 255, .7);
         -webkit-filter: invert(100%);
         transform: translateY(-50%);
-        transition: .2s left, .2s right;
+        transition: .2s left, .2s right, .2s top;
         z-index: 100;
     }
     #box .prev {
@@ -74,9 +74,17 @@ img {
         left: -30px;
         transform: scaleX(-1) translateY(-50%);
     }
+    #box .update {
+        top: -28px;
+        right: 0;
+        background-image: url('../node_modules/octicons/build/svg/zap.svg');
+        background-size: 16px 16px;
+        transform: none;
+    }
+    #box .update.show { top: 0; }
     #box .inner.show .prev { left: 0 }
     #box .inner.show .next { right: 0 }
-    #box .prev:hover, #box .next:hover {
+    #box .prev:hover, #box .next:hover, #box .update:hover {
         background-color: white;
     }
     #box .inner {
