@@ -151,6 +151,12 @@ $(document).ready(() => {
     } else if (evt.keyCode == 39) {
         // Right
         nextImage()
+    } else if (evt.keyCode == 38) {
+        // Up
+        setShowCaption(true)
+    } else if (evt.keyCode == 40) {
+        // Down
+        setShowCaption(false)
     } else if (evt.keyCode == 27) {
         // Escape
         closeBox(() => app.quit())
