@@ -113,7 +113,7 @@ img {
         right: 0;
         bottom: -3.3em;
         height: 3.3em;
-        padding: 0 20px;
+        padding: 0 10px;
         overflow: hidden;
         background: rgba(0, 0, 0, .8);
         font-weight: lighter;
@@ -125,11 +125,15 @@ img {
     }
     #box .inner .caption h1 {
         float: left;
+        padding: 0 10px;
         overflow: hidden;
         max-width: 100%;
         font-size: 1.3em;
         font-weight: lighter;
         text-overflow: ellipsis;
+    }
+    #box .inner .caption h1:hover {
+        background-color: rgba(255, 255, 255, .1);
     }
     #box .inner .caption p {
         float: left;
