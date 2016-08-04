@@ -1,5 +1,5 @@
 const {ipcRenderer, remote, shell} = require('electron')
-const {app, process, dialog} = remote
+const {app, process, dialog, Menu} = remote
 const $ = require('sprint-js')
 const fs = require('fs')
 const path = require('path')
@@ -44,6 +44,10 @@ function getShowCaption() {
 
 function setShowCaption(show) {
     $('#box .caption').toggleClass('show', show)
+}
+
+function getImageURL() {
+    return $('#box .inner img').attr('src')
 }
 
 function loadImage(index) {
@@ -124,6 +128,28 @@ function previousImage() {
     loadImage(currentImageIndex)
 }
 
+function showImageMenu() {
+    let platform = process.platform
+    let $h1 = $('#box .inner .caption h1')
+
+    let position = $h1.offset()
+    position.left = Math.round(position.left)
+    position.top = Math.round(position.top + $h1.height())
+
+    let template = [
+        {
+            label: 'Show in ' + (platform == 'win32' ? 'Explorer' : 'Finder'),
+            click: () => closeBox(() => {
+                shell.showItemInFolder(getImageURL())
+                app.quit()
+            })
+        }
+    ]
+
+    let menu = Menu.buildFromTemplate(template)
+    menu.popup(position.left, position.top)
+}
+
 $(document).ready(() => {
     $('#overlay').addClass('show').on('click', () => closeBox(() => app.quit()))
     $('#box img').on('click', () => setShowCaption(!getShowCaption()))
@@ -131,6 +157,8 @@ $(document).ready(() => {
 
     $('#box .prev').on('click', () => previousImage())
     $('#box .next').on('click', () => nextImage())
+
+    $('#box .inner .caption h1').on('click', () => showImageMenu())
 
     if (settings.checkupdates) {
         setTimeout(() => {
