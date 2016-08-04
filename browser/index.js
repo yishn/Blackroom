@@ -133,16 +133,18 @@ $(document).ready(() => {
     $('#box .next').on('click', () => nextImage())
 
     if (settings.checkupdates) {
-        checkForUpdates((err, hasUpdates, url) => {
-            if (err || !hasUpdates) return
+        setTimeout(() => {
+            checkForUpdates((err, hasUpdates, url) => {
+                if (err || !hasUpdates) return
 
-            $('#box .update').addClass('show').on('click', () => {
-                closeBox(() => {
-                    shell.openExternal(url)
-                    app.quit()
+                $('#box .update').addClass('show').on('click', () => {
+                    closeBox(() => {
+                        shell.openExternal(url)
+                        app.quit()
+                    })
                 })
             })
-        })
+        }, 1)
     }
 }).on('keyup', evt => {
     if (evt.keyCode == 37) {
