@@ -24,7 +24,7 @@ $ npm install electron-packager -g
 $ npm install
 ~~~
 
-You can build Sabaki on Windows by using:
+You can build Blackroom on Windows by using:
 
 ~~~
 $ npm run build:win
